@@ -1,0 +1,31 @@
+﻿services:
+  todolist.api:
+    image: todolist:latest
+    container_name: todolist.api
+    build:
+      context: .
+      dockerfile: TodoListWithDocker/Dockerfile
+    ports:
+      - "5000:5000"
+  
+  todolist.db:
+    image: postgres:latest
+    container_name: todolist.db
+    environment:
+      - POSTGRES_DB=todolist
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+    ports:
+      - "5432:5432"
+        
+  todolist.cache:
+    image: redis:latest
+    container_name: todolist.cache
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:

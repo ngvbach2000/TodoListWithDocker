@@ -1,0 +1,6 @@
+@TodoListWithDocker_HostAddress = http://localhost:5261
+
+GET {{TodoListWithDocker_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
